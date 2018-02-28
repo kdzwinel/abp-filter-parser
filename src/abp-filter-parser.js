@@ -1,8 +1,6 @@
 import * as BloomFilterJS from 'bloom-filter-js';
 import {badFingerprints, badSubstrings} from './badFingerprints.js';
 
-let fs = require('fs');
-
 /**
  * bitwise mask of different request types
  */
@@ -517,8 +515,6 @@ function hasMatchingFilters(filterList, parsedFilterData, input, contextParams, 
     } else {
       cachedInputData.matchedFilters[foundFilter.rawFilter]  = { matches: 1 };
     }
-
-    fs.writeFileSync('easylist-matches.json', JSON.stringify(cachedInputData.matchedFilters), 'utf-8');
   }
   return !!foundFilter;
 }
