@@ -197,7 +197,8 @@ export function parseFilter(input, parsedFilterData, bloomFilter, exceptionBloom
   }
 
   // Check for options, regex can have options too so check this before regex
-  index = input.indexOf('$', beginIndex);
+  const match = input.match(/\$[a-z0-9,~=.-]+$/);
+  index = match ? match.index : -1;
   if (index !== -1) {
     parsedFilterData.options = parseOptions(input.substring(index + 1));
     // Get rid of the trailing options for the rest of the parsing
